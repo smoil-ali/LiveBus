@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="data"
+            type="com.reactive.livebus.model.BusClass" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.BusActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:id="@+id/header"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/purple_500"
+        android:paddingHorizontal="@dimen/_8sdp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/title_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Add Bus"
+            />
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/checked"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/done"
+            />
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/trash_bin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/done"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:id="@+id/delete"
+            app:tint="@color/white"
+            android:visibility="gone"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/body"
+            android:paddingHorizontal="@dimen/_8sdp"
+            >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Bus Number"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:id="@+id/busnumber_container"
+                app:error="@{data.busNumberError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:id="@+id/busnumber"
+                    android:text="@={data.busNumber}"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Start Point"
+                app:layout_constraintTop_toBottomOf="@id/busnumber_container"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:id="@+id/startpoint_container"
+                app:error="@{data.startPointError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:id="@+id/startpoint"
+                    android:text="@={data.startPoint}"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Lat start point"
+                app:layout_constraintTop_toBottomOf="@id/startpoint_container"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:id="@+id/latstart_container"
+                app:error="@{data.startPointLatError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/latlngstart"
+                    android:text="@={data.startLat}"
+                    />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Lng start point"
+                app:layout_constraintTop_toBottomOf="@id/latstart_container"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:id="@+id/lngstart_container"
+                app:error="@{data.startPointLngError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/lngstart"
+                    android:text="@={data.startLng}"
+                    />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Destination"
+                app:layout_constraintTop_toBottomOf="@id/lngstart_container"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:id="@+id/destination_container"
+                app:error="@{data.destinationError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:id="@+id/destination"
+                    android:text="@={data.destination}"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Lat Destination"
+                app:layout_constraintTop_toBottomOf="@id/destination_container"
+                android:id="@+id/latdestination_container"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:error="@{data.destinationLatError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/latlngdestination"
+                    android:text="@={data.destinationLat}"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Lng Destination"
+                app:layout_constraintTop_toBottomOf="@id/latdestination_container"
+                android:id="@+id/lngdestination_container"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:error="@{data.destinationLngError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/lngdestination"
+                    android:text="@={data.destinationLng}"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Seats"
+                app:layout_constraintTop_toBottomOf="@id/lngdestination_container"
+                android:id="@+id/seats_container"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:error="@{data.totalSeatsError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/seats"
+                    android:text="@={data.totalSeats}"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Start Time"
+                app:layout_constraintTop_toBottomOf="@id/seats_container"
+                android:id="@+id/starttime_container"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:error="@{data.startTimeError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="none"
+                    android:id="@+id/starttime"
+                    android:text="@={data.startTime}"
+                    android:focusable="false"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Arrival Time"
+                app:layout_constraintTop_toBottomOf="@id/starttime_container"
+                android:id="@+id/arrivaltime_container"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:error="@{data.arrivalTimeError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:id="@+id/arrivaltime"
+                    android:text="@={data.arrivalTime}"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Fare"
+                app:layout_constraintTop_toBottomOf="@id/arrivaltime_container"
+                android:id="@+id/fare_container"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:error="@{data.fareError}"
+                app:errorEnabled="@{data.displayError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/fare"
+                    android:text="@={data.fare}"
+                    android:inputType="numberDecimal"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recycler"
+                app:layout_constraintTop_toBottomOf="@id/fare_container"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/recycler"
+                android:id="@+id/stops_container"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:paddingHorizontal="@dimen/_6sdp"
+                >
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add Stop"
+                    android:id="@+id/stopButton"
+                    />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bus"
+        android:icon="@drawable/bus"
+        android:title="Bus"/>
+
+    <item
+        android:id="@+id/driver"
+        android:icon="@drawable/driver"
+        android:title="Driver"/>
+
+</menu>
